@@ -11,3 +11,78 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.form-email {
+  margin-top: 10px;
+
+}
+
+.form-password {
+  margin-top: 10px;
+}
+
+.form-control {
+  width: 370px;
+}
+.container-login{
+  width: 400px;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.container-register{
+  width: 400px;
+  margin: auto;
+  margin-top: 10%;
+}
+
+#btn-register{
+  height: 50px;
+  /* font-size: large; */
+  margin-bottom: 5px;
+  color: white;
+  text-decoration: none;
+}
+
+#register-font{
+  margin-left: 15%;
+  font-size:60px;
+  margin-bottom: 10%;
+}
+
+#login-font{
+  margin-left: 25%;
+  font-size:60px;
+  margin-bottom: 10%;
+}
+
+#description {
+  width: 370px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+
+
+.container-chat{
+  width: 700px;
+  margin: auto;
+  margin-top: 5%;
+}
+
+#chat-font{
+  margin-left: 40%;
+  font-size:40px;
+  /* margin-bottom: 10%; */
+}
+
+#navbar-text {
+  color: white;
+  margin-left: 40%;
+}
+
+.container-item {
+  width: 30%;
+  background-color: rgb(194, 189, 189);
+  margin: auto;
+}

@@ -13,8 +13,8 @@ router.post('/login', apiUsers.userLogin)
 router.delete('/users/:id',  apiUsers.userDelete)
 
 // API CHAT
-router.get('/chats', helpers.verifyToken, apiChats.chatRead)
-router.post('/chats', helpers.verifyToken, apiChats.chatCreate)
+router.get('/chats',  apiChats.chatRead)
+router.post('/chats',  apiChats.chatCreate)
 router.delete('/chats/:id', helpers.verifyToken, apiChats.chatDelete)
 router.put('/chats/:id', helpers.verifyToken, apiChats.chatUpdate)
 
