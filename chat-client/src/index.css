@@ -81,8 +81,32 @@ code {
   margin-left: 40%;
 }
 
-.container-item {
-  width: 30%;
+#container-item {
+  width: 100%;
   background-color: rgb(194, 189, 189);
   margin: auto;
+  margin-bottom: 0px;
+  padding: 3px;
+}
+
+#btn-post{
+  margin-top: 5px;
+}
+
+.form-chat {
+  margin-top: 10px;
+  width: 100%;
+  margin: auto;
+}
+
+.chat-input {
+  margin-top: 10px;
+  width: 100%;
+  margin: auto;
+}
+
+#btn-cancel {
+  margin-top: 0px;
+  height: 30px;
+  margin-bottom: 10px;
 }

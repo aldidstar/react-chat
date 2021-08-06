@@ -15,7 +15,7 @@ router.delete('/users/:id',  apiUsers.userDelete)
 // API CHAT
 router.get('/chats',  apiChats.chatRead)
 router.post('/chats',  apiChats.chatCreate)
-router.delete('/chats/:id', helpers.verifyToken, apiChats.chatDelete)
+router.delete('/chats/:id',  apiChats.chatDelete)
 router.put('/chats/:id', helpers.verifyToken, apiChats.chatUpdate)
 
 

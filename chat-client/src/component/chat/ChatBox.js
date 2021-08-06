@@ -6,25 +6,37 @@ import ChatItem from "./ChatItem";
 
 // import { Link } from "react-router-dom";
 
-export default class ChatBox extends React.Component {
-  constructor(props) {
-    super(props);
-    // this.state = { email: "", password: "" };
-  }
+// export default class ChatBox extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     // this.state = { email: "", password: "" };
+//   }
 
-  componentDidMount() {}
+//   componentDidMount() {}
 
-  render() {
-    return (
-      <form>
-        <ChatNavbar />
-        <div className="container-chat">
-        <ChatItem />
-          <ChatInput />
-          <br></br>
-        </div>
-      </form>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <form>
+//         <ChatNavbar />
+//         <div className="container-chat">
+//         <ChatItem />
+//           <ChatInput />
+//           <br></br>
+//         </div>
+//       </form>
+//     );
+//   }
 // }
+
+export default function ChatBox() {
+  return (
+<div>
+    <ChatNavbar />
+    <div className="container-chat">
+    <ChatItem />
+      <ChatInput />
+      <br></br>
+    </div>
+    </div>
+  )
+}
