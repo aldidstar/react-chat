@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 export default class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", name: "" };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,11 +26,14 @@ export default class RegisterForm extends React.Component {
       .post(`http://localhost:3000/api/register`, {
         email: this.state.email,
         password: this.state.password,
+        name: this.state.name
 
       })
       .then((response) => {
         console.log(response);
         localStorage.setItem('token', response.data.token )
+        localStorage.setItem("email", response.data.data.email);
+
       });
 
     event.preventDefault();
@@ -39,8 +42,21 @@ export default class RegisterForm extends React.Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
+        
         <div className="container-register">
           <h1 id="register-font">Register</h1>
+          <div className="form-password">
+            <label>
+              Name:
+              <input
+              className="form-control"
+                name="name"
+                type="text"
+                value={this.state.name}
+                onChange={this.handleChange}
+              />{" "}
+            </label>
+          </div>
           <div className="form-email">
             <label >
               Email:
@@ -65,6 +81,7 @@ export default class RegisterForm extends React.Component {
               />{" "}
             </label>
           </div>
+      
           <br></br>
           <button
             id="btn-register"

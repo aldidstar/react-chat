@@ -6,6 +6,8 @@ import RegisterForm from "./component/register/RegisterForm";
 import ChatBox from "./component/chat/ChatBox";
 import ChatNavbar from "./component/chat/ChatNavbar";
 import ChatInput from "./component/chat/ChatInput";
+import ChatList from "./component/chat/ChatList";
+
 
 
 
@@ -18,6 +20,8 @@ const App = () => (
       <Route path="/ChatBox" component={ChatBox} />
       <Route path="/ChatNavbar" component={ChatNavbar} />
       <Route path="/ChatInput" component={ChatInput} />
+      <Route path="/ChatList" component={ChatList} />
+
 
       
 

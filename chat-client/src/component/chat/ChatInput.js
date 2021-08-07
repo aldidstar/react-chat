@@ -1,36 +1,36 @@
 import React from "react";
-import axios from "axios";
+
 
 export default class ChatInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { description: "" };
+    this.state = { description: "", name: localStorage.getItem("email") };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({ description: event.target.value });
-  }
-  handleSubmit(event) {
-    axios
-    .post(`http://localhost:3000/api/chats`, {
-      description: this.state.description
-    })
-    .then((response) => {
-      console.log(response.data.chat._id);
-      localStorage.setItem("_id", response.data.chat._id);
-    })
-    .catch((err) => {
-      alert(err);
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value,
     });
+  }
+  handleSubmit(event) { 
+    this.props.addChat(this.state.description)
+    this.setState({ description: "", name: localStorage.getItem("email") });
     event.preventDefault();
   }
 
   render() {
+    const user = localStorage.getItem("email");
+    console.log(user)
     return (
+      <div>
       <form onSubmit={this.handleSubmit}>
       <div id="form-chat">
+        <input id="user-input" readOnly type="text" value={this.state.name} onChange={this.handleChange} name="name" />
         <textarea
           className="chat-input"
           placeholder="Write your chat tes"
@@ -49,6 +49,9 @@ export default class ChatInput extends React.Component {
         Post
       </button>
     </form>
+    </div>
     );
   }
 }
+
+

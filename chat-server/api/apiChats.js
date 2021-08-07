@@ -34,7 +34,7 @@ chatRead: async (req, res) => {
 
   chatDelete: async (req, res) => {
     try {
-      const chat = await Chat.findByIdAndRemove(req.params.id);
+      const chat = await Chat.findOneAndRemove({id: req.params.id});
       res.status(201).json({
         success: true,
         message: "chat have been deleted",

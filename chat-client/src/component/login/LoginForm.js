@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: ""};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,8 +25,11 @@ export default class LoginForm extends React.Component {
       .post(`http://localhost:3000/api/login`, {
         email: this.state.email,
         password: this.state.password,
+     
+
       })
       .then((response) => {
+        console.log(response)
         if (response.data.data) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("email", response.data.data.email);
