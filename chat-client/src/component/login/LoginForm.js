@@ -32,7 +32,7 @@ export default class LoginForm extends React.Component {
         console.log(response)
         if (response.data.data) {
         localStorage.setItem("token", response.data.token);
-        localStorage.setItem("email", response.data.data.email);
+        localStorage.setItem("name", response.data.data.name);
         } else {
           alert("Login tidak berhasil");
         }

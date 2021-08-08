@@ -32,7 +32,7 @@ export default class RegisterForm extends React.Component {
       .then((response) => {
         console.log(response);
         localStorage.setItem('token', response.data.token )
-        localStorage.setItem("email", response.data.data.email);
+        localStorage.setItem("name", response.data.data.name);
 
       });
 

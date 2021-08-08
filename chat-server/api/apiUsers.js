@@ -41,7 +41,7 @@ userLogin: async  (req, res) => {
 
         res.status(201).json({
           data: {
-
+            name: user.name,
             email: user.email
           },
           token: token
@@ -88,7 +88,7 @@ userRegister: async (req, res, next) => {
 
         res.status(201).json({
          data: {
-
+          name: user.name,
            email: user.email
          },
           

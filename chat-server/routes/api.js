@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+// const io = require('socket.io')(server);
+// const path = require('path');
+// const server = require('http').createServer(app);
 const helpers = require("../helpers/util");
 const apiUsers = require("../api/apiUsers")
 const apiChats = require("../api/apiChats")

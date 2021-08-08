@@ -1,5 +1,5 @@
 export default function ChatItem(props) {
-  const user = localStorage.getItem("email");
+  const user = localStorage.getItem("name");
   console.log(user)
   return (
     <div className="row" >
@@ -15,7 +15,7 @@ export default function ChatItem(props) {
       </div>
       <div className="col-2" id="container-item" >
       <div id="user-text">
-      <p  >{user}</p>
+      {/* <p  >{user}</p> */}
       </div>
       <p  >{props.description}</p>
 

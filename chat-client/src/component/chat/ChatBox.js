@@ -3,7 +3,9 @@ import React from "react";
 import ChatInput from "./ChatInput";
 import ChatNavbar from "./ChatNavbar";
 import ChatList from "./ChatList";
-// import ChatItem from "./ChatItem";
+// import io from 'socket.io-client';
+
+
 
 
 export default class ChatBox extends React.Component {
@@ -16,6 +18,7 @@ export default class ChatBox extends React.Component {
   }
 
   componentDidMount() {
+    
     axios
       .get(`http://localhost:3000/api/chats`, {
         headers: {
@@ -24,6 +27,19 @@ export default class ChatBox extends React.Component {
       })
       .then((response) => {
         this.setState({chat: response.data});
+        // const socket = io.connect('http://localhost:3000')
+        // io.on('connection', (socket) => {
+        //   let addedUser = false;
+        
+        //   // when the client emits 'new message', this listens and executes
+        //   socket.on('new message', (data) => {
+        //     // we tell the client to execute 'new message'
+        //     socket.broadcast.emit('new message', {
+        //       username: socket.username,
+        //       message: response
+        //     });
+        //   });
+        // });
 
         // localStorage.getItem("token");
         // localStorage.getItem("email");
