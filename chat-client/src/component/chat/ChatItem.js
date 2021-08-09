@@ -1,6 +1,4 @@
 export default function ChatItem(props) {
-  const user = localStorage.getItem("name");
-  console.log(user)
   return (
     <div className="row" >
        <div className="col">

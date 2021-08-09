@@ -23,8 +23,6 @@ export default class ChatInput extends React.Component {
   }
 
   render() {
-    const user = localStorage.getItem("name");
-    console.log(user);
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

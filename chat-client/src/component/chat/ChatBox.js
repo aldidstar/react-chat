@@ -4,7 +4,8 @@ import ChatInput from "./ChatInput";
 import ChatNavbar from "./ChatNavbar";
 import ChatList from "./ChatList";
 import io from "socket.io-client";
-const socket = io.connect(`http://localhost:3000`);
+const socket = io(`http://localhost:3000`);
+
 
 export default class ChatBox extends React.Component {
   
@@ -13,21 +14,35 @@ export default class ChatBox extends React.Component {
     this.state = { chat: [] };
     this.addChat = this.addChat.bind(this);
     this.deletedChat = this.deletedChat.bind(this);
+    this.loadChat = this.loadChat.bind(this);
+
   }
 
   componentDidMount() {
+    this.loadChat()
+
+    socket.on('add chat', () => { 
+      this.loadChat()
+  });
+  socket.on('remove chat', () => { 
+    this.loadChat()
+});
+
+  }
+
+  loadChat() {
     axios
-      .get(`http://localhost:3000/api/chats`, {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((response) => {
-        this.setState({ chat: response.data });
-      })
-      .catch((err) => {
-        alert(err);
-      });
+    .get(`http://localhost:3000/api/chats`, {
+      headers: {
+        "x-access-token": localStorage.getItem("token"),
+      },
+    })
+    .then((response) => {
+      this.setState({ chat: response.data });
+    })
+    .catch((err) => {
+      alert(err);
+    });
   }
 
   addChat(description, name) {
@@ -37,6 +52,7 @@ export default class ChatBox extends React.Component {
     axios
       .post(
         `http://localhost:3000/api/chats`,
+        
         {
           id,
           description,
@@ -49,8 +65,10 @@ export default class ChatBox extends React.Component {
         }
       )
       .then((response) => {
-        socket.emit("new message", response);
-      })
+       
+          socket.emit("new message",null);
+       
+    })
       .catch((err) => {
         alert(err);
       });
@@ -64,6 +82,7 @@ export default class ChatBox extends React.Component {
         },
       })
       .then((response) => {
+        socket.emit("delete message",null);
         console.log(response);
         this.setState({
           chat: this.state.chat.filter((item) => item.id !== id),
