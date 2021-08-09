@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default class ChatInput extends React.Component {
   constructor(props) {
     super(props);
@@ -17,43 +16,47 @@ export default class ChatInput extends React.Component {
       [name]: value,
     });
   }
-  handleSubmit(event) { 
-    this.props.addChat(this.state.name  + ':' + ' ' + this.state.description)
-    // this.props.addChat(this.state.name)
-    this.setState({ description: "", name: localStorage.getItem("name") });
+  handleSubmit(event) {
     event.preventDefault();
+    this.props.addChat(this.state.description, this.state.name);
+    this.setState({ description: "", name: localStorage.getItem("name") });
   }
 
   render() {
     const user = localStorage.getItem("name");
-    console.log(user)
+    console.log(user);
     return (
       <div>
-      <form onSubmit={this.handleSubmit}>
-      <div id="form-chat">
-        <input id="user-input" readOnly  type="text" value={this.state.name} onChange={this.handleChange} name="name" />
-        <br></br>
-        <textarea
-          className="chat-input"
-          placeholder="Write your chat tes"
-          name="description"
-          value={this.state.description}
-          onChange={this.handleChange}
-        />
-      </div>
+        <form onSubmit={this.handleSubmit}>
+          <div id="form-chat">
+            <input
+              id="user-input"
+              readOnly
+              type="text"
+              value={this.state.name}
+              onChange={this.handleChange}
+              name="name"
+            />
+            
+            <textarea
+              className="chat-input"
+              placeholder="Write your chat here"
+              name="description"
+              value={this.state.description}
+              onChange={this.handleChange}
+            />
+          </div>
 
-      <button
-        id="btn-post"
-        className="w-5 btn btn-lg btn-primary"
-        type="submit"
-        value="post"
-      >
-        Post
-      </button>
-    </form>
-    </div>
+          <button
+            id="btn-post"
+            className="w-5 btn btn-lg btn-primary"
+            type="submit"
+            value="post"
+          >
+            Post
+          </button>
+        </form>
+      </div>
     );
   }
 }
-
-

@@ -22,6 +22,7 @@ export default class RegisterForm extends React.Component {
     });
   }
   handleSubmit(event) {
+    event.preventDefault();
     axios
       .post(`http://localhost:3000/api/register`, {
         email: this.state.email,
@@ -33,10 +34,10 @@ export default class RegisterForm extends React.Component {
         console.log(response);
         localStorage.setItem('token', response.data.token )
         localStorage.setItem("name", response.data.data.name);
-
+        window.location = '/ChatBox'
       });
 
-    event.preventDefault();
+    
   }
 
   render() {

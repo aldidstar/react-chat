@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 
 
 export default function ChatNavbar() {
-  function Logout() {
+  function Logout(event) {
+    event.preventDefault();
      localStorage.clear();
+     window.location = '/'
   }
     return (
         <nav className="navbar navbar-light bg-dark">

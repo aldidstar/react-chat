@@ -15,7 +15,7 @@ export default function ChatItem(props) {
       </div>
       <div className="col-2" id="container-item" >
       <div id="user-text">
-      {/* <p  >{user}</p> */}
+      <p  >{props.name}</p>
       </div>
       <p  >{props.description}</p>
 

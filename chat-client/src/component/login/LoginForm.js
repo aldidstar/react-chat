@@ -10,6 +10,8 @@ export default class LoginForm extends React.Component {
     this.state = { email: "", password: ""};
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.Register = this.Register.bind(this);
+
   }
 
   handleChange(event) {
@@ -21,6 +23,7 @@ export default class LoginForm extends React.Component {
     });
   }
   handleSubmit(event) {
+    event.preventDefault();
     axios
       .post(`http://localhost:3000/api/login`, {
         email: this.state.email,
@@ -33,11 +36,17 @@ export default class LoginForm extends React.Component {
         if (response.data.data) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("name", response.data.data.name);
+        window.location = '/ChatBox'
         } else {
           alert("Login tidak berhasil");
         }
       });
+    
+  }
+
+   Register(event) {
     event.preventDefault();
+     window.location = '/RegisterForm'
   }
 
   render() {
@@ -80,6 +89,7 @@ export default class LoginForm extends React.Component {
             <Link id="btn-register" to="/ChatBox">Login</Link>
           </button>
           <button
+          onClick={this.Register}
             id="btn-register"
             className="w-100 btn btn-lg btn-success"
             type="button"

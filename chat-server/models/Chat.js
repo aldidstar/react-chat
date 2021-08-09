@@ -8,6 +8,9 @@ const chatSchema = new Schema(
     id: {
       type: Number,
     },
+    name: {
+      type: String,
+    },
   },
   {
     timestamps: true,
