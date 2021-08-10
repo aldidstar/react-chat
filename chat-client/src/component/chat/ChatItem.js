@@ -11,12 +11,14 @@ export default function ChatItem(props) {
         <i className="fas fa-minus"></i>
       </button>
       </div>
+      
       <div className="col-2" id="container-item" >
       <div id="user-text">
       <p  >{props.name}</p>
       </div>
-      <p  >{props.description}</p>
-
+      <p  >{props.description}
+      {!props.sent && < button id="reload" className="btn btn-danger" onClick={()=> props.resend(props.name, props.description)}>Send Again</button>}
+      </p>
       </div>
      
     </div>

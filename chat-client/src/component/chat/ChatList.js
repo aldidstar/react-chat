@@ -12,6 +12,8 @@ export default class ChatList extends React.Component {
           key={item.id}
           id={item.id}
           remove={this.props.deletedChat}
+          sent = {item.sent}
+          resend={this.props.resendChat}
         />
       );
     });
