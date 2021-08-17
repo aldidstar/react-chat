@@ -24,7 +24,7 @@ export default class RegisterForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios
-      .post(`http://localhost:3000/api/register`, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/register`, {
         email: this.state.email,
         password: this.state.password,
         name: this.state.name

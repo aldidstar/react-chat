@@ -4,7 +4,7 @@ import ChatInput from "./ChatInput";
 import ChatNavbar from "./ChatNavbar";
 import ChatList from "./ChatList";
 import io from "socket.io-client";
-const socket = io(`http://localhost:3000`);
+const socket = io(`${process.env.REACT_APP_SERVER_URL}`);
 
 export default class ChatBox extends React.Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class ChatBox extends React.Component {
 
   loadChat() {
     axios
-      .get(`http://localhost:3000/api/chats`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/chats`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },
@@ -55,7 +55,7 @@ export default class ChatBox extends React.Component {
 
     axios
       .post(
-        `http://localhost:3000/api/chats`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chats`,
 
         {
           id,
@@ -87,7 +87,7 @@ export default class ChatBox extends React.Component {
     const id = Date.now();
     axios
       .post(
-        `http://localhost:3000/api/chats`,
+        `${process.env.REACT_APP_SERVER_URL}/api/chats`,
 
         {
           id,
@@ -111,7 +111,7 @@ export default class ChatBox extends React.Component {
 
   deletedChat(id) {
     axios
-      .delete(`http://localhost:3000/api/chats/${id}`, {
+      .delete(`${process.env.REACT_APP_SERVER_URL}/api/chats/${id}`, {
         headers: {
           "x-access-token": localStorage.getItem("token"),
         },

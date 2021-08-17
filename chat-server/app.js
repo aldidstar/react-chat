@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -7,7 +10,7 @@ const mongoose = require("mongoose");
 const cors = require("cors")
 
 
-mongoose.connect("mongodb://localhost:27017/chat", {
+mongoose.connect(process.env.DB_MONGO_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });

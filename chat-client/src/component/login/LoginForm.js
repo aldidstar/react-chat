@@ -25,7 +25,7 @@ export default class LoginForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     axios
-      .post(`http://localhost:3000/api/login`, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/api/login`, {
         email: this.state.email,
         password: this.state.password,
      
