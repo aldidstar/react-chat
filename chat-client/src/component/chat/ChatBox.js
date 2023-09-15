@@ -1,57 +1,57 @@
-import axios from "axios";
-import React from "react";
-import ChatInput from "./ChatInput";
-import ChatNavbar from "./ChatNavbar";
-import ChatList from "./ChatList";
-import io from "socket.io-client";
-const socket = io(`${process.env.REACT_APP_SERVER_URL}`);
+import axios from 'axios'
+import React from 'react'
+import ChatInput from './ChatInput'
+import ChatNavbar from './ChatNavbar'
+import ChatList from './ChatList'
+import io from 'socket.io-client'
+const socket = io(`${process.env.REACT_APP_SERVER_URL}`)
 
 export default class ChatBox extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { chat: [] };
-    this.addChat = this.addChat.bind(this);
-    this.deletedChat = this.deletedChat.bind(this);
-    this.loadChat = this.loadChat.bind(this);
-    this.resendChat = this.resendChat.bind(this);
+    super(props)
+    this.state = { chat: [] }
+    this.addChat = this.addChat.bind(this)
+    this.deletedChat = this.deletedChat.bind(this)
+    this.loadChat = this.loadChat.bind(this)
+    this.resendChat = this.resendChat.bind(this)
   }
 
   componentDidMount() {
-    this.loadChat();
+    this.loadChat()
 
-    socket.on("add chat", () => {
-      this.loadChat();
-    });
-    socket.on("remove chat", () => {
-      this.loadChat();
-    });
+    socket.on('add chat', () => {
+      this.loadChat()
+    })
+    socket.on('remove chat', () => {
+      this.loadChat()
+    })
   }
 
   loadChat() {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/api/chats`, {
         headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
+          'x-access-token': localStorage.getItem('token')
+        }
       })
       .then((response) => {
         this.setState({
           chat: response.data.map((item) => {
-            item.sent = true;
-            return item;
-          }),
-        });
+            item.sent = true
+            return item
+          })
+        })
       })
       .catch((err) => {
-        alert(err);
-      });
+        alert(err)
+      })
   }
 
   addChat(description, name) {
-    const id = Date.now();
+    const id = Date.now()
     this.setState((state, props) => ({
-      chat: [...state.chat, { id, description, name, sent: true }],
-    }));
+      chat: [...state.chat, { id, description, name, sent: true }]
+    }))
 
     axios
       .post(
@@ -60,31 +60,31 @@ export default class ChatBox extends React.Component {
         {
           id,
           description,
-          name,
+          name
         },
         {
           headers: {
-            "x-access-token": localStorage.getItem("token"),
-          },
+            'x-access-token': localStorage.getItem('token')
+          }
         }
       )
       .then((response) => {
-        socket.emit("new message", null);
+        socket.emit('new message', null)
       })
       .catch((err) => {
         this.setState((state, props) => ({
           chat: state.chat.map((item) => {
             if (item.id === id) {
-              item.sent = false;
+              item.sent = false
             }
-            return item;
-          }),
-        }));
-      });
+            return item
+          })
+        }))
+      })
   }
 
   resendChat(name, description) {
-    const id = Date.now();
+    const id = Date.now()
     axios
       .post(
         `${process.env.REACT_APP_SERVER_URL}/api/chats`,
@@ -92,40 +92,40 @@ export default class ChatBox extends React.Component {
         {
           id,
           name,
-          description,          
+          description
         },
         {
           headers: {
-            "x-access-token": localStorage.getItem("token"),
-          },
+            'x-access-token': localStorage.getItem('token')
+          }
         }
       )
       .then((response) => {
-        socket.emit("new message", null);
-        this.loadChat();
+        socket.emit('new message', null)
+        this.loadChat()
       })
       .catch((err) => {
-        throw err;
-      });
+        throw err
+      })
   }
 
   deletedChat(id) {
     axios
       .delete(`${process.env.REACT_APP_SERVER_URL}/api/chats/${id}`, {
         headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
+          'x-access-token': localStorage.getItem('token')
+        }
       })
       .then((response) => {
-        socket.emit("delete message", null);
-        console.log(response);
+        socket.emit('delete message', null)
+        console.log(response)
         this.setState({
-          chat: this.state.chat.filter((item) => item.id !== id),
-        });
+          chat: this.state.chat.filter((item) => item.id !== id)
+        })
       })
       .catch((err) => {
-        alert(err);
-      });
+        alert(err)
+      })
   }
 
   render() {
@@ -142,6 +142,6 @@ export default class ChatBox extends React.Component {
           <br></br>
         </div>
       </div>
-    );
+    )
   }
 }
